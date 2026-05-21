@@ -6,7 +6,7 @@ WORKDIR /app
 RUN mkdir -p /app/downloads /app/slskd_data /var/log/supervisor
 
 # Extract slskd
-RUN wget https://github.com/slskd/slskd/releases/latest/download/slskd-linux-x64.zip -O slskd.zip && \
+RUN wget https://github.com/slskd/slskd/releases/download/0.25.1/slskd-0.25.1-linux-x64.zip -O slskd.zip && \
     unzip slskd.zip -d /app/slskd && \
     chmod +x /app/slskd/slskd && \
     rm slskd.zip
