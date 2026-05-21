@@ -1,6 +1,10 @@
 FROM python:3.10-slim
 
-RUN apt-get update && apt-get install -y wget unzip supervisor curl && rm -rf /var/lib/apt/lists/*
+# Install necessary tools AND the missing libicu-dev library for the .NET engine
+RUN apt-get update && apt-get install -y wget unzip supervisor curl libicu-dev && rm -rf /var/lib/apt/lists/*
+
+# Tell .NET it doesn't need strict globalization (prevents crashes in slim containers)
+ENV DOTNET_SYSTEM_GLOBALIZATION_INVARIANT=1
 
 WORKDIR /app
 RUN mkdir -p /app/downloads /app/slskd_data /var/log/supervisor
